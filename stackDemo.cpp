@@ -148,7 +148,7 @@ int main()
         }
         goto X;
     case 5:
-        cout<<"\nThank You for using our program "<<endl;
+        cout<<"\nThank You, Have a Great Day..."<<endl;
         return EXIT_SUCCESS;
     default:
         cout<<"\nERROR::INVALID CHOICE. "<<endl;
