@@ -11,6 +11,7 @@ struct Stack
 {   Node *top;  };
 
 typedef struct Stack STACK;
+int count=0;
 
 //INITIALIZE THE STACK WITH NULL VALUE
 bool stackInit(STACK *s)
@@ -69,6 +70,27 @@ bool stackPop(STACK *s,int &info)
         return true;
     }
 }
+
+//Function to check for balanced parenthesis
+void valid(STACK *s1,STACK *s2)
+{
+    Node *temp=s1->top;
+    int data=temp->data;
+    
+    if(stackEmpty(s1))
+    {
+        if(stackInit(s2))
+            cout<<"\nStack's are EMPTY"<<endl;
+    }
+    else if(data=='(')
+    {
+        count++;
+        if(stackPush(s2,data))
+            cout<<"\nelement pushed in temp stack"<<endl;
+    }
+
+}
+
 
 int main()
 {
@@ -148,7 +170,7 @@ int main()
         }
         goto X;
     case 5:
-        cout<<"\nThank You for using our program "<<endl;
+        cout<<"\nTHANK YOU, HAVE A GREAT DAY"<<endl;
         return EXIT_SUCCESS;
     default:
         cout<<"\nERROR::INVALID CHOICE. "<<endl;
