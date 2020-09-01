@@ -1,4 +1,5 @@
 #include <iostream>
+
 using namespace std;
 
 struct Node
@@ -114,18 +115,20 @@ int main()
     char choice='Y';
     int mainMenu=1;
     X:
-    cout<<"*************************************************************************"<<endl;
-    cout<<"\t\t\tMAIN MENU"<<endl;
-    cout<<"1.Create a Linked List."<<endl;
-    cout<<"2.Insert Node into List."<<endl;
-    cout<<"3.Delete Node from List."<<endl;
-    cout<<"4.Display Linked List. "<<endl;
-    cout<<"5.Exit program."<<endl;
+    cout<<"\n*************************************************************************"<<endl;
+    cout<<"\t\t\t\tMAIN MENU"<<endl;
+    cout<<"\t\t\t  1.Create a Linked List."<<endl;
+    cout<<"\t\t\t  2.Insert Node into List."<<endl;
+    cout<<"\t\t\t  3.Delete Node from List."<<endl;
+    cout<<"\t\t\t  4.Display Linked List. "<<endl;
+    cout<<"\t\t\t  5.Exit program."<<endl;
+    cout<<"\n*************************************************************************"<<endl;
     cin>>mainMenu;
 
     switch (mainMenu)
     {
-        case 1:
+        //create Linked List
+        case 1: 
             if(createList(&head))
             {   
                 cout<<"\nList created Succesfully.."<<endl;
@@ -135,22 +138,70 @@ int main()
                 goto X;
             break;
 
-        case 2:
-        do
-        {
-            
-        } while (choice=='Y' || choice =='y');
-        
-        
+        //Insert new data
+        case 2: 
+        {   
+            int pos, data;
+            pos=data=0;
+            do
+            {   
+                cout<<"\nEnter Positon(index): ";
+                cin>>pos;
+                cout<<"\nEnter Data: ";
+                cin>>data;
+                
+                insertNode(&head,data,pos);
+
+                cout<<"\nPress Y/y to enter more. N to break: ";
+                cin>>choice;
+            } while (choice=='Y' || choice =='y');
+            goto X;
+        }
         break;
 
-        case 4:
+        //Delete Node data
+        case 3:
+        {
+            int pos;
+            pos=0;
+            do
+            {   
+                cout<<"\nEnter Positon(index): ";
+                cin>>pos;
+               
+                deleteNode(&head,pos);
+
+                cout<<"\nPress Y/y to Delete more. N to break: ";
+                cin>>choice;
+            } while (choice=='Y' || choice =='y');
+            
+            goto X;
+        }
+        break;
+        
+        //display List
+        case 4: 
         {
             cout<<"\nThe List is: "<<endl;
             displayList(head);
+            cout<<endl;
+            goto X;
         }
+        break;
+
+        //Exit program
+        case 5:
+        {
+            cout<<"\nTHANK YOU, HAVE A GREAT DAY.."<<endl;
+            return EXIT_SUCCESS;
+        }
+        break;
     
-    default:
+    default:   
+        cout<<"\nERROR::INVALID CHOICE. "<<endl;
+        goto X;
         break;
     }
+
+    return 0;
 }
