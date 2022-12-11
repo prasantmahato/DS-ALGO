@@ -61,6 +61,16 @@ int size(Node *stack)
     return len;
 }
 
+void display(Node *stack)
+{
+    while(stack)
+    {
+        printf("\n%d",stack->data);
+        stack = stack->next;
+    }
+    printf("\n");
+}
+
 int main()
 {
     Node *stack=create_stack();
@@ -73,6 +83,7 @@ int main()
         printf("2. Pop\n");
         printf("3. Top\n");
         printf("4. Size\n");
+        printf("5. Display\n");
         printf("Choose any of the options: ");
         scanf("%d",&choice);
 
@@ -99,6 +110,9 @@ int main()
             break;
         case 4:
             printf("\nStack size: %d\n",size(stack));
+        case 5:
+            printf("\nStack Elements: ");
+            display(stack);
         default:
             break;
         }
