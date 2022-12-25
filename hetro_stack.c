@@ -50,11 +50,12 @@ void push(stack *s, char srn[], char name[], int sem, char sec[],char sub[])
     }
     ++(s->top);
     
-    strcpy(s->stu[s->top].name,name);
-    strcpy(s->stu[s->top].srn,srn);
-    strcpy(s->stu[s->top].sub, sub);
-    strcpy(s->stu[s->top].sec, sec);
-    s->stu[s->top].sem = sem;
+    int tp = s->top; // stores the top element of the stack
+    strcpy(s->stu[tp].name,name);
+    strcpy(s->stu[tp].srn,srn);
+    strcpy(s->stu[tp].sub, sub);
+    strcpy(s->stu[tp].sec, sec);
+    s->stu[tp].sem = sem;
 }
 
 int pop(stack *s)

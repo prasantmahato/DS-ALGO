@@ -61,42 +61,30 @@ void concat(char s1[], char s2[])
     printf("\n%s\n",res);
 }
 
-/*
-
-    Returns -1 if sub_string is not present
-    Return (pos) if sub_string is present
-
-*/
-int substr(char s1[],char sub_s[])
+int cmp(const char *a, const char *b)
 {
-    int i, start, end;
-    i=start=end=0;
-
-    int len = find_len(s1);
-    int sub_len = find_len(sub_s);
-    int pos = 0;
-    int flag = 0;
-    for(i=0; i<len; i++)
+    while(*a && *b)
     {
-        for(int j=i,start=0; j<len; j++)
-        {
-            if(s1[j] == sub_s[start])
-            {
-                start++;
-                pos = j;
-            }
-            if(start == sub_len)
-            {
-                flag = 1;
-            }
-        }
+        if(*a != *b)
+            return 0;
+        a++;
+        b++;
     }
-    if(flag == 0)
-        return -1;
-        
-    return pos-1;
+    return(*b == '\0');
 }
 
+// Return the starting address of the substring if found
+char *sub_str(const char *str, const char *sub)
+{
+    while(*str)
+    {
+        if((*str == *sub) && (cmp(str,sub)))
+            return str;
+        
+        str++;
+    }
+    return NULL;
+}
 
 int main()
 {
@@ -138,11 +126,16 @@ int main()
         case 3:
             printf("\nEnter sub-string to find in STRING1: ");
             scanf("%s",sub.string);
-            int pos = substr(s1.string,sub.string);
-            if(pos != -1)
-                printf("\nSubstring pos: %d\n",pos);
+            char *position = sub_str(s1.string, sub.string);
+
+            // If position is not null
+            if(position)
+            {
+                int index = position - s1.string;
+                printf("\nThe substring '%s' was found at index %d\n",sub.string,index);
+            }
             else
-                printf("\n\'%s\' not present in %s",sub.string, s1.string);
+                printf("\nThe substring '%s' was not found in '%s'\n",sub.string,s1.string);
             break;
         case 4:
             concat(s1.string,s2.string);
