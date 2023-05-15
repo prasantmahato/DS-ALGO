@@ -1,0 +1,7 @@
+*.o
+*.out
+*.tmp
+*.swp
+*.db
+*.json
+
